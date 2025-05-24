@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
-import { supabase } from "@/lib/supabase";
+import supabase from "@/utils/supabase";
 
 const WaitlistForm = () => {
   const [email, setEmail] = useState("");
@@ -37,14 +37,23 @@ const WaitlistForm = () => {
         .from('waitlist')
         .insert([{ email }]);
 
-      if (error) throw error;
-      
-      toast({
-        title: "Success!",
-        description: "You've been added to our waitlist. We'll be in touch soon!",
-      });
-      
-      setEmail("");
+      if (error) {
+        if (error.code === '23505') { // Unique constraint violation
+          toast({
+            title: "Already registered!",
+            description: "This email is already on our waitlist.",
+            variant: "destructive",
+          });
+        } else {
+          throw error;
+        }
+      } else {
+        toast({
+          title: "Success!",
+          description: "You've been added to our waitlist. We'll be in touch soon!",
+        });
+        setEmail("");
+      }
     } catch (error) {
       console.error("Error submitting email:", error);
       toast({
