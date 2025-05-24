@@ -81,7 +81,7 @@ const WaitlistForm = () => {
         </div>
         <Button 
           type="submit" 
-          className="w-full py-6 text-lg bg-black hover:bg-gray-800 text-white rounded-full transition-all duration-200 transform hover:scale-105"
+          className="w-full py-6 text-base bg-black hover:bg-gray-800 text-white rounded-full transition-all duration-200 transform hover:scale-105"
           disabled={isLoading}
         >
           {isLoading ? "Joining..." : "Join the Waitlist"}
