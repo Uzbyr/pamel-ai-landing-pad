@@ -30,7 +30,7 @@ const Index = () => {
       {/* Footer */}
       <footer className="pb-8 text-center">
         <p className="text-sm text-gray-400">
-          © 2024 pamel.ai - Mindful technology for mindful living
+          © 2025 pamel.ai - Mindful technology for mindful living
         </p>
       </footer>
     </div>
